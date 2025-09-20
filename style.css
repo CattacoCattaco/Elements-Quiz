@@ -1,4 +1,62 @@
+:root {
+  --gas-color: #f00;
+  --liquid-color: #00f;
+  --solid-color: #000;
+}
+
 html {
   height: 100%;
   width: 100%;
+}
+
+form {
+  flex: content;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+label {
+  display: inline;
+}
+
+input {
+  display: inline;
+  margin-top: 0.5%;
+}
+
+#element-div {
+  margin-top: 0.5%;
+  height: 150px;
+  width: 120px;
+  background-color: aqua;
+  border: 4px solid black;
+  border-radius: 15px;
+}
+
+#element-number {
+  font-size: 20px;
+  position: relative;
+  justify-self: flex-start;
+  align-self: flex-start;
+  left: 9px;
+  top: -15px;
+}
+
+#element-symbol {
+  font-size: 48px;
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  top: -55px;
+}
+
+#element-name {
+  font-size: 24px;
+  position: relative;
+  justify-self: center;
+  align-self: center;
+  top: -110px;
 }
