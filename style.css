@@ -1,5 +1,6 @@
 :root {
   --state-color: #000;
+  --group-color: #fff;
   --element-number-visibility: hidden;
   --element-symbol-visibility: visible;
   --element-name-visibility: hidden;
@@ -32,7 +33,7 @@ input {
   margin-top: 0.5%;
   height: 150px;
   width: 120px;
-  background-color: aqua;
+  background-color: var(--group-color);
   border: 4px solid black;
   border-radius: 15px;
 }
@@ -54,6 +55,8 @@ input {
   align-self: center;
   top: -55px;
   color: var(--state-color);
+  -webkit-text-stroke-color: #000;
+  -webkit-text-stroke-width: 2px;
   visibility: var(--element-symbol-visibility);
 }
 
