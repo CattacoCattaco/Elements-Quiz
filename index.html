@@ -9,15 +9,18 @@
 </head>
 
 <body>
-  <form>
+  <form onsubmit="checkAnswer(); return false;">
     <br/>
-    <label for="answer-box">What element is C short for?</label><br/>
+    <span id="correctness-label" hidden="true">Correct!</span><br/>
+    <label for="answer-box" id="question-label">What element is C short for?</label><br/>
     <div id="element-div">
       <p id="element-number">6</p>
       <p id="element-symbol">C</p>
       <p id="element-name">Carbon</p>
     </div>
     <input type="text" id="answer-box" name="answer-box"/>
+    <input type="button" onclick="checkAnswer()" value=" Check " id="check-button" name="check-button"/>
+    <input type="button" onclick="nextQuestion()" value=" Next  " id="next-button" name="next-button"/>
   </form>
   <script src="script.js"></script>
 </body>

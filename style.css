@@ -1,7 +1,8 @@
 :root {
-  --gas-color: #f00;
-  --liquid-color: #00f;
-  --solid-color: #000;
+  --state-color: #000;
+  --element-number-visibility: hidden;
+  --element-symbol-visibility: visible;
+  --element-name-visibility: hidden;
 }
 
 html {
@@ -43,6 +44,7 @@ input {
   align-self: flex-start;
   left: 9px;
   top: -15px;
+  visibility: var(--element-number-visibility);
 }
 
 #element-symbol {
@@ -51,6 +53,8 @@ input {
   justify-self: center;
   align-self: center;
   top: -55px;
+  color: var(--state-color);
+  visibility: var(--element-symbol-visibility);
 }
 
 #element-name {
@@ -59,4 +63,5 @@ input {
   justify-self: center;
   align-self: center;
   top: -110px;
+  visibility: var(--element-name-visibility);
 }
