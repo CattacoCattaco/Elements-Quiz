@@ -9,19 +9,47 @@
 </head>
 
 <body>
-  <form onsubmit="checkAnswer(); return false;">
-    <br/>
-    <span id="correctness-label" hidden="true">Correct!</span><br/>
-    <label for="answer-box" id="question-label">What element is C short for?</label><br/>
-    <div id="element-div">
-      <p id="element-number">6</p>
-      <p id="element-symbol">C</p>
-      <p id="element-name">Carbon</p>
+  <div id="regions-holder">
+    <div id="settings-area">
+      <form id="settings-form">
+        <br/>
+        <span class="settings-span">Possible Given Information:</span><br/>
+        <input type="checkbox" id="given-element-number" name="given-element-number" value="Given Element Number"/><label for="given-element-number" class="no-left-margin"> Element Number</label><br/>
+        <input type="checkbox" id="given-element-symbol" name="given-element-symbol" value="Given Element Symbol" checked/><label for="given-element-symbol" class="no-left-margin"> Element Symbol</label><br/>
+        <input type="checkbox" id="given-element-name" name="given-element-name" value="Given Element Name"/><label for="given-element-name" class="no-left-margin"> Element Name</label><br/>
+        <br/>
+        <span class="settings-span">Displayed Extra Information:</span><br/>
+        <input type="checkbox" id="show-state" name="show-state" value="Show State"/><label for="show-state" class="no-left-margin"> State of Matter</label><br/>
+        <input type="checkbox" id="show-group" name="show-group" value="Show Group"/><label for="show-group" class="no-left-margin"> Element Group</label><br/>
+        <br/>
+        <label for="min-givens">Minimum Pieces of Given Information</label><br/>
+        <input type="number" id="min-givens" name="min-givens" value="1"/><br/>
+        <label for="max-givens">Maximum Pieces of Given Information</label><br/>
+        <input type="number" id="max-givens" name="max-givens" value="1"/><br/>
+        <br/>
+        <span class="settings-span">Possible Requested Information:</span><br/>
+        <input type="checkbox" id="ask-element-number" name="ask-element-number" value="Ask Element Number"/><label for="ask-element-number" class="no-left-margin"> Element Number</label><br/>
+        <input type="checkbox" id="ask-element-symbol" name="ask-element-symbol" value="Ask Element Symbol"/><label for="ask-element-symbol" class="no-left-margin"> Element Symbol</label><br/>
+        <input type="checkbox" id="ask-element-name" name="ask-element-name" value="Ask Element Name" checked/><label for="ask-element-name" class="no-left-margin"> Element Name</label><br/>
+        <input type="checkbox" id="ask-state" name="ask-state" value="Ask State"/><label for="ask-state" class="no-left-margin"> State of Matter</label><br/>
+        <input type="checkbox" id="ask-group" name="ask-group" value="Ask Group"/><label for="ask-group" class="no-left-margin"> Element Group</label><br/>
+      </form>
     </div>
-    <input type="text" id="answer-box" name="answer-box"/>
-    <input type="button" onclick="checkAnswer()" value=" Check " id="check-button" name="check-button"/>
-    <input type="button" onclick="nextQuestion()" value=" Next  " id="next-button" name="next-button"/>
-  </form>
+    <div id="guess-area">
+      <form onsubmit="checkAnswer(); return false;" id="guess-form">
+        <span id="correctness-label" hidden="true">Correct!</span><br/>
+        <label for="answer-box" class="no-left-margin" id="question-label">What element is C short for?</label><br/>
+        <div id="element-div">
+          <p id="element-number">6</p>
+          <p id="element-symbol">C</p>
+          <p id="element-name">Carbon</p>
+        </div>
+        <input type="text" class="no-left-margin" id="answer-box" name="answer-box"/>
+        <input type="button" onclick="checkAnswer()" value=" Check " class="no-left-margin" id="check-button" name="check-button"/>
+        <input type="button" onclick="nextQuestion()" value=" Next  " class="no-left-margin" id="next-button" name="next-button"/>
+      </form>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 
