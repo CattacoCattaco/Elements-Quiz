@@ -158,7 +158,7 @@ let elements = [
     new ChemElement("Ca", "Calcium", 20, SOLID, ALKALINE_EARTH_METAL),
     new ChemElement("Sc", "Scandium", 21, SOLID, TRANSITION_METAL),
     new ChemElement("Ti", "Titanium", 22, SOLID, TRANSITION_METAL),
-    new ChemElement("V", "Vinadium", 23, SOLID, TRANSITION_METAL),
+    new ChemElement("V", "Vanadium", 23, SOLID, TRANSITION_METAL),
     new ChemElement("Cr", "Chromium", 24, SOLID, TRANSITION_METAL),
     new ChemElement("Mn", "Manganese", 25, SOLID, TRANSITION_METAL),
     new ChemElement("Fe", "Iron", 26, SOLID, TRANSITION_METAL),
