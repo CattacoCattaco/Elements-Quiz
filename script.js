@@ -1,5 +1,7 @@
-const MIN_GIVENS_BOX = document.getElementById("min-givens");
-const MAX_GIVENS_BOX = document.getElementById("max-givens");
+const MIN_MAJOR_GIVENS_BOX = document.getElementById("min-major-givens");
+const MAX_MAJOR_GIVENS_BOX = document.getElementById("max-major-givens");
+const MIN_MINOR_GIVENS_BOX = document.getElementById("min-minor-givens");
+const MAX_MINOR_GIVENS_BOX = document.getElementById("max-minor-givens");
 
 const CORRECTNESS_LABEL = document.getElementById("correctness-label");
 const QUESTION_LABEL = document.getElementById("question-label");
@@ -217,29 +219,60 @@ function nextQuestion() {
 
     ask = possibleAsks[Math.floor(Math.random() * possibleAsks.length)];
 
-    let possibleGivens = [];
+    let possibleMajorGivens = [];
+    let possibleMinorGivens = [];
 
     for(let i = SYMBOL; i <= NUMBER; i++) {
         if(i != ask && GIVEN_CHECKS[i].checked) {
-            possibleGivens.push(i);
+            possibleMajorGivens.push(i);
         }
     }
 
-    if(MAX_GIVENS_BOX.value < MIN_GIVENS_BOX.value) {
-        MAX_GIVENS_BOX.value = MIN_GIVENS_BOX.value;
+    for(let i = STATE; i <= GROUP; i++) {
+        if(i != ask && GIVEN_CHECKS[i].checked) {
+            possibleMinorGivens.push(i);
+        }
     }
 
-    let minGivens = MIN_GIVENS_BOX.value;
-    let maxGivens = MAX_GIVENS_BOX.value;
-    let givenCount = Math.floor(Math.random() * (maxGivens - minGivens)) + minGivens;
+    console.log(possibleMajorGivens, possibleMinorGivens)
+
+    if(MIN_MAJOR_GIVENS_BOX.value < 1) {
+        MIN_MAJOR_GIVENS_BOX.value = 1;
+    }
+    else if(MIN_MAJOR_GIVENS_BOX.value > 3) {
+        MIN_MAJOR_GIVENS_BOX.value = 3;
+        MAX_MAJOR_GIVENS_BOX.value = 3;
+    }
+
+    if(MAX_MAJOR_GIVENS_BOX.value < MIN_MAJOR_GIVENS_BOX.value) {
+        MAX_MAJOR_GIVENS_BOX.value = MIN_MAJOR_GIVENS_BOX.value;
+    }
+
+    if(MIN_MINOR_GIVENS_BOX.value < 0) {
+        MIN_MINOR_GIVENS_BOX.value = 0;
+    }
+    else if(MIN_MINOR_GIVENS_BOX.value > 2) {
+        MIN_MINOR_GIVENS_BOX.value = 2;
+        MAX_MINOR_GIVENS_BOX.value = 2;
+    }
+
+    if(MAX_MINOR_GIVENS_BOX.value < MIN_MINOR_GIVENS_BOX.value) {
+        MAX_MINOR_GIVENS_BOX.value = MIN_MINOR_GIVENS_BOX.value;
+    }
+
+    let majorGivenCount = randi(parseInt(MIN_MAJOR_GIVENS_BOX.value), parseInt(MAX_MAJOR_GIVENS_BOX.value));
+    let minorGivenCount = randi(parseInt(MIN_MINOR_GIVENS_BOX.value), parseInt(MAX_MINOR_GIVENS_BOX.value));
+
+    console.log("Major given count: ", majorGivenCount);
+    console.log("Minor given count: ", minorGivenCount);
 
     let givens = [];
 
-    for(let i = 0; i < givenCount; i++) {
-        if(possibleGivens.length > 0) {
-            let givenIndex = Math.floor(Math.random() * possibleGivens.length);
-            givens.push(possibleGivens[givenIndex]);
-            possibleGivens.splice(givenIndex, 1);
+    for(let i = 0; i < majorGivenCount; i++) {
+        if(possibleMajorGivens.length > 0) {
+            let givenIndex = randi(0, possibleMajorGivens.length - 1);
+            givens.push(possibleMajorGivens[givenIndex]);
+            possibleMajorGivens.splice(givenIndex, 1);
         }
         else {
             if(ask != SYMBOL) {
@@ -251,11 +284,23 @@ function nextQuestion() {
         }
     }
 
-    for(let i = STATE; i <= GROUP; i++) {
-        if(i != ask && GIVEN_CHECKS[i].checked) {
-            givens.push(i);
+    for(let i = 0; i < minorGivenCount; i++) {
+        if(possibleMinorGivens.length > 0) {
+            let givenIndex = randi(0, possibleMinorGivens.length - 1);
+            givens.push(possibleMinorGivens[givenIndex]);
+            possibleMinorGivens.splice(givenIndex, 1);
+        }
+        else {
+            if(ask != STATE) {
+                givens.push(STATE);
+            }
+            else {
+                givens.push(GROUP);
+            }
         }
     }
+
+    console.log("Givens: ", givens);
 
     let isGiven = [false, false, false, false, false];
 
@@ -263,7 +308,9 @@ function nextQuestion() {
         isGiven[givens[i]] = true;
     }
 
-    currentElement = elements[Math.floor(Math.random() * elements.length)];
+    console.log("isGiven: ", isGiven);
+
+    currentElement = elements[randi(0, elements.length - 1)];
 
     switch(ask) {
         case SYMBOL:
@@ -347,4 +394,10 @@ function checkAnswer() {
             CORRECTNESS_LABEL.innerHTML = "Incorrect! The correct answer was " + currentElement.getProperty(ask).toString();
         }
     }
+}
+
+function randi(min, max) {
+    let random = Math.random();
+    console.log("Min: ", min, " Max: ", max, " Rand: ", random, " Result: ", Math.floor((random * ((max - min) + 1)) + min));
+    return Math.floor((random * ((max - min) + 1)) + min);
 }
